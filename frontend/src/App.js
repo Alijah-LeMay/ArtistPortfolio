@@ -11,13 +11,15 @@ import BlogScreen from './screens/BlogScreen'
 const App = () => {
   return (
     <>
-      <Switch>
-        <Route exact path='/' component={HomeScreen} />
-        <Route exact path='/gallery' component={GalleryScreen} />
-        <Route exact path='/pricing' component={PricingScreen} />
-        <Route exact path='/contact' component={ContactScreen} />
-        <Route exact path='/blog' component={BlogScreen} />
-      </Switch>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={HomeScreen} />
+          <Route exact path='/gallery' component={GalleryScreen} />
+          <Route exact path='/pricing' component={PricingScreen} />
+          <Route exact path='/contact' component={ContactScreen} />
+          <Route exact path='/blog' component={BlogScreen} />
+        </Switch>
+      </BrowserRouter>
     </>
   )
 }

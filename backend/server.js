@@ -1,5 +1,5 @@
 const express = require('express')
-require('dotenv').config
+require('dotenv').config()
 
 const connectDB = require('./config/db')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
@@ -20,3 +20,5 @@ app.use(notFound)
 app.use(errorHandler)
 
 const PORT = process.env.PORT || 5003
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
