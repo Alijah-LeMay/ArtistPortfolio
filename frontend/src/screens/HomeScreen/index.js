@@ -4,12 +4,19 @@ import React from 'react'
 import trail from '../../assets/trail.jpg'
 import skyline from '../../assets/skyline.jpg'
 import classes from './HomeScreen.module.css'
+
+// Redux
+import { useSelector, useDispatch } from 'redux'
 const blogPosts = [
   { img: '', description: '' },
   { img: '', description: '2' },
 ]
 
 const HomeScreen = () => {
+  const dispatch = useDispatch()
+
+  const blogList = useSelector((state) => state.blogList)
+  const { loading: loadingBlogs, blogs } = blogList
   return (
     <div className={classes.homeScreen_container}>
       <div className={classes.slide}>
