@@ -36,6 +36,14 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('Invalid user data')
   }
 })
+// desc         GET /api/user
+// @route       Get all users
+// @access      Public
+
+const getAllUsers = asyncHandler(async (req, res) => {
+  const users = await User.find()
+  res.json(users)
+})
 
 // desc         POST /api/user/login
 // @route       Login user & get user
@@ -60,5 +68,19 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error('Invalid email or password')
   }
 })
+// desc         DELETE /api/user/:id
+// @route       Delete User By ID
+// @access      Public
 
-module.exports = { registerUser, loginUser }
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+  if (user) {
+    await user.remove()
+    res.json({ message: 'User Removed' })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
+module.exports = { loginUser, getAllUsers, registerUser, deleteUser }

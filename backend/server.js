@@ -3,6 +3,8 @@ require('dotenv').config()
 
 const connectDB = require('./config/db')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
+const userRoutes = require('./routes/userRoutes')
+const blogRoutes = require('./routes/blogRoutes')
 
 const app = express()
 
@@ -13,6 +15,8 @@ connectDB()
 app.use(express.json({ extended: false }))
 
 // Define Routes
+app.use('/api/user', userRoutes)
+app.use('/api/blog', blogRoutes)
 
 // Make sure middleware is after other routes
 
