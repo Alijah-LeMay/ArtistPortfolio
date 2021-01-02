@@ -7,6 +7,7 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const userRoutes = require('./routes/userRoutes')
 const blogRoutes = require('./routes/blogRoutes')
 const uploadRoutes = require('./routes/uploadRoutes')
+const galleryRoutes = require('./routes/galleryRoutes')
 
 const app = express()
 
