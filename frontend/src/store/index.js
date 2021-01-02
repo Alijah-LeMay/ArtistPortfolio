@@ -7,12 +7,14 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null
 
-const initialstate = { userLogin: { userInfo: userInfoFromStorage } }
+const initialState = { userLogin: { userInfo: userInfoFromStorage } }
 
 const middleware = [thunk]
 
 const store = createStore(
   rootReducer,
-  initialstate,
+  initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 )
+
+export default store

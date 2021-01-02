@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 // My Assets
 import trail from '../../assets/trail.jpg'
@@ -6,7 +7,12 @@ import skyline from '../../assets/skyline.jpg'
 import classes from './HomeScreen.module.css'
 
 // Redux
-import { useSelector, useDispatch } from 'redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { getBlogs } from '../../store/actions/blogActions'
+
+// My Components
+import Loader from '../../components/Loader'
+
 const blogPosts = [
   { img: '', description: '' },
   { img: '', description: '2' },
@@ -17,6 +23,11 @@ const HomeScreen = () => {
 
   const blogList = useSelector((state) => state.blogList)
   const { loading: loadingBlogs, blogs } = blogList
+
+  useEffect(() => {
+    dispatch(getBlogs())
+  }, [dispatch])
+
   return (
     <div className={classes.homeScreen_container}>
       <div className={classes.slide}>
@@ -29,12 +40,31 @@ const HomeScreen = () => {
       <div className={classes.blogSlide}>
         <img className={classes.blogSlide_image} src={skyline} alt='skyline' />
         <div className={classes.blogs_container}>
-          {blogPosts.map((idx, post) => (
-            <div key={idx}>
-              <img src={post.img} alt={post.img} />
-              <p>{post.description}</p>
-            </div>
-          ))}
+          {loadingBlogs ? (
+            <Loader />
+          ) : (
+            blogs.map((post, idx) => (
+              <div className={classes.blog_card} key={idx}>
+                {post.image ? (
+                  <>
+                    <div className={classes.image_clipper}>
+                      <img
+                        className={classes.blog_image}
+                        src={post.image}
+                        alt={post.image}
+                      />
+                    </div>
+                    <p>{post.description}</p>
+                    <Link className={classes.link} to='/blog'>
+                      - More
+                    </Link>
+                  </>
+                ) : (
+                  <Loader />
+                )}
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

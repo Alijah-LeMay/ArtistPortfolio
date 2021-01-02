@@ -32,11 +32,43 @@
   overflow: hidden;
 }
 .blogSlide_image {
-  overflow: hidden;
   position: absolute;
   right: 80px;
   width: 70%;
   margin-top: 15px;
   max-height: 1000px;
   max-width: 780px;
+}
+.blogs_container {
+  display: flex;
+  flex-direction: row;
+  padding-top: 80px;
+}
+.blog_card {
+  background-color: grey;
+  z-index: 2;
+  margin: auto;
+  padding: 5px;
+}
+.image_clipper {
+  height: 300px;
+  overflow: hidden;
+  background-color: grey;
+}
+.blog_image {
+  width: 100%;
+  max-width: 250px;
+  min-width: 180px;
+  margin-top: -30px;
+}
+.blog_card p {
+  text-align: center;
+  font-size: 1.2rem;
+  max-width: 250px;
+}
+.link {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  float: right;
 }

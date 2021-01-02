@@ -1,10 +1,12 @@
 const express = require('express')
 require('dotenv').config()
+const path = require('path')
 
 const connectDB = require('./config/db')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const userRoutes = require('./routes/userRoutes')
 const blogRoutes = require('./routes/blogRoutes')
+const uploadRoutes = require('./routes/uploadRoutes')
 
 const app = express()
 
@@ -17,6 +19,13 @@ app.use(express.json({ extended: false }))
 // Define Routes
 app.use('/api/user', userRoutes)
 app.use('/api/blog', blogRoutes)
+
+// Image upload route
+app.use('/api/upload', uploadRoutes)
+
+// Make uploads folder static
+const dirname = path.resolve()
+app.use('/uploads', express.static(path.join(dirname, '/uploads')))
 
 // Make sure middleware is after other routes
 
