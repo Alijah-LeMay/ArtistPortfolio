@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -55,7 +55,7 @@ const LoginScreen = (props) => {
   }
 
   return (
-    <Fragment>
+    <>
       <form onSubmit={submitHandler}>
         <h2>Administrator Login</h2>
         {formElements.map((formElement) => (
@@ -69,7 +69,7 @@ const LoginScreen = (props) => {
         ))}
         <button type='submit'>Submit</button>
       </form>
-    </Fragment>
+    </>
   )
 }
 

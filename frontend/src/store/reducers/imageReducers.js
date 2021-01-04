@@ -14,7 +14,9 @@ import {
   DELETE_IMAGE_REQUEST,
   DELETE_IMAGE_SUCCESS,
   DELETE_IMAGE_FAIL,
-} from '../constants/galleryConstants'
+  UPDATE_IMAGE_RESET,
+  CREATE_IMAGE_RESET,
+} from '../constants/imageConstants'
 
 export const imageListReducer = (state = { images: [] }, action) => {
   switch (action.type) {

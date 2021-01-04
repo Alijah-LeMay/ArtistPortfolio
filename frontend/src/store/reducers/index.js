@@ -9,6 +9,13 @@ import {
   blogDetailsReducer,
   blogDeleteReducer,
 } from './blogReducers'
+import {
+  imageCreateReducer,
+  imageDeleteReducer,
+  imageDetailsReducer,
+  imageListReducer,
+  imageUpdateReducer,
+} from './imageReducers'
 
 export default combineReducers({
   userLogin: userLoginReducer,
@@ -17,4 +24,9 @@ export default combineReducers({
   blogUpdate: blogUpdateReducer,
   blogDetails: blogDetailsReducer,
   blogDelete: blogDeleteReducer,
+  imageList: imageListReducer,
+  imageCreate: imageCreateReducer,
+  imageDelete: imageDeleteReducer,
+  imageDetails: imageDetailsReducer,
+  imageUpdate: imageUpdateReducer,
 })

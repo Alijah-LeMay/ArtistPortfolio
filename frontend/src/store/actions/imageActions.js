@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   GET_IMAGES_REQUEST,
   GET_IMAGES_SUCCESS,
@@ -14,13 +15,13 @@ import {
   DELETE_IMAGE_REQUEST,
   DELETE_IMAGE_SUCCESS,
   DELETE_IMAGE_FAIL,
-} from '../constants/galleryConstants'
+} from '../constants/imageConstants'
 
 export const getImages = () => async (dispatch) => {
   try {
     dispatch({ type: GET_IMAGES_REQUEST })
 
-    const { data } = await axios.get('/api/gallery')
+    const { data } = await axios.get('/api/image')
 
     dispatch({
       type: GET_IMAGES_SUCCESS,
@@ -51,7 +52,7 @@ export const createImage = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.post('/api/gallery', {}, config)
+    const { data } = await axios.post('/api/image', {}, config)
 
     dispatch({
       type: CREATE_IMAGE_SUCCESS,
@@ -71,7 +72,7 @@ export const getImageDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: IMAGE_DETAILS_REQUEST })
 
-    const { data } = await axios.get(`/api/gallery/${id}`)
+    const { data } = await axios.get(`/api/image/${id}`)
 
     dispatch({
       type: IMAGE_DETAILS_SUCCESS,
@@ -103,7 +104,7 @@ export const deleteImage = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.delete(`/api/gallery/${id}`, config)
+    const { data } = await axios.delete(`/api/image/${id}`, config)
 
     dispatch({
       type: DELETE_IMAGE_SUCCESS,
@@ -134,7 +135,7 @@ export const updateImage = (image) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.put(`/api/gallery/${image._id}`, image, config)
+    const { data } = await axios.put(`/api/image/${image._id}`, image, config)
 
     dispatch({
       type: UPDATE_IMAGE_SUCCESS,

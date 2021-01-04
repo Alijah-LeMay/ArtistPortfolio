@@ -1,89 +1,61 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useEffect } from 'react'
 
 // Assets
 import classes from './AdminScreen.module.css'
 
-const AdminScreen = () => {
+// Redux
+import { useDispatch, useSelector } from 'react-redux'
+import { CREATE_IMAGE_RESET } from '../../store/constants/imageConstants'
+import { createImage, getImages } from '../../store/actions/imageActions'
+import { logout } from '../../store/actions/userActions'
+
+const AdminScreen = (props) => {
+  const { history } = props
   const dispatch = useDispatch()
 
-  const [images, setImages] = useState([])
-  const [uploading, setUploading] = useState(false)
+  // Get user login from state
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
-  const imagesArray = []
-  for (let key in images) {
-    imagesArray.push(images[key])
-  }
+  const imageCreate = useSelector((state) => state.imageCreate)
+  const { success: successCreateImage, image: createdImage } = imageCreate
 
-  const uploadFileHandler = async (e) => {
-    const file = e.target.files[0]
-    const formData = new FormData()
-    formData.append('image', file)
-    setUploading(true)
-    try {
-      const config = {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      }
+  const imageList = useSelector((state) => state.imageList)
+  const { success: successLoadImages, images: gallery } = imageList
 
-      const { data } = await axios.post('/api/upload', formData, config)
-
-      imagesArray.push(data)
-      setImages(imagesArray)
-      setUploading(false)
-    } catch (error) {
-      console.error(error)
-      setUploading(false)
-    }
-  }
-  const uploadFileHandler = async (e) => {
-    const file = e.target.files[0]
-    const formData = new FormData()
-    formData.append('image', file)
-    setUploading(true)
-    try {
-      const config = {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      }
-
-      const { data } = await axios.post('/api/upload', formData, config)
-
-      imagesArray.push(data)
-      setImages(imagesArray)
-      setUploading(false)
-    } catch (error) {
-      console.error(error)
-      setUploading(false)
-    }
-  }
-  const submitHandler = (e) => {
+  const createImageHandler = (e) => {
     e.preventDefault()
-    dispatch(
-      updateGallery({
-        images: images,
-      })
-    )
+    dispatch(createImage())
   }
-  const imageDeleteHandler = (id) => {
-    const imageIndex = images.indexOf(id)
-    image.splice(imageIndex, 1)
-    console.log(imageIndex)
+  const logoutHandler = (e) => {
+    e.preventDefault()
+    dispatch(logout())
   }
 
+  useEffect(() => {
+    dispatch({ type: CREATE_IMAGE_RESET })
+    // Check if user info / Admin
+    if (!userInfo || !userInfo.isAdmin) {
+      history.push('/login')
+    }
+
+    dispatch(getImages())
+
+    if (successCreateImage) {
+      history.push(`/admin/image/${createdImage._id}/edit`)
+    }
+  }, [userInfo, dispatch, history, successCreateImage, createdImage])
   return (
     <div>
-      <form onSubmit={submitHandler}>
-        {image.map((item, index) => (
-          <div className={classes.imageBox_container} key={index}>
-            <img src={item} style={{ width: '100px' }} alt={item} />
-            <button onClick={() => imageDeleteHandler(item)}>Delete</button>
-          </div>
+      Welcome
+      <button onClick={createImageHandler}>Add an image</button>
+      <button onClick={logoutHandler}>Logout</button>
+      <div>
+        {gallery.map((item, idx) => (
+          <img src={item.src[0]} />
         ))}
-        <input type='file' onChange={uploadFileHandler} name={image} />
-        {uploading && <div>...loading...</div>}
-        <button type='submit'>Submit</button>
-      </form>
+      </div>
     </div>
   )
 }
-
 export default AdminScreen

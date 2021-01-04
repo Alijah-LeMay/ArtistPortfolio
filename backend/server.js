@@ -7,7 +7,7 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware')
 const userRoutes = require('./routes/userRoutes')
 const blogRoutes = require('./routes/blogRoutes')
 const uploadRoutes = require('./routes/uploadRoutes')
-const galleryRoutes = require('./routes/galleryRoutes')
+const imageRoutes = require('./routes/imageRoutes')
 
 const app = express()
 
@@ -20,6 +20,7 @@ app.use(express.json({ extended: false }))
 // Define Routes
 app.use('/api/user', userRoutes)
 app.use('/api/blog', blogRoutes)
+app.use('/api/image', imageRoutes)
 
 // Image upload route
 app.use('/api/upload', uploadRoutes)
