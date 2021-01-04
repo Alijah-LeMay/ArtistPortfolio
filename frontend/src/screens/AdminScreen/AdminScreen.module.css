@@ -1,3 +1,6 @@
 .imageBox_container {
   display: inline;
 }
+.adminScreen_container {
+  padding: 60px 0;
+}

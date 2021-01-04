@@ -6,6 +6,8 @@ import { login } from '../../store/actions/userActions'
 
 // My Components
 import FormField from '../../components/FormField'
+// Assets
+import classes from './LoginScreen.module.css'
 const LoginScreen = (props) => {
   const { history } = props
   const dispatch = useDispatch()
@@ -55,7 +57,7 @@ const LoginScreen = (props) => {
   }
 
   return (
-    <>
+    <div className={classes.loginScreen_container}>
       <form onSubmit={submitHandler}>
         <h2>Administrator Login</h2>
         {formElements.map((formElement) => (
@@ -69,7 +71,7 @@ const LoginScreen = (props) => {
         ))}
         <button type='submit'>Submit</button>
       </form>
-    </>
+    </div>
   )
 }
 

@@ -9,6 +9,7 @@ import classes from './HomeScreen.module.css'
 // Redux
 import { useSelector, useDispatch } from 'react-redux'
 import { getBlogs } from '../../store/actions/blogActions'
+import { getImages } from '../../store/actions/imageActions'
 
 // My Components
 import Loader from '../../components/Loader'
@@ -23,9 +24,12 @@ const HomeScreen = () => {
 
   const blogList = useSelector((state) => state.blogList)
   const { loading: loadingBlogs, blogs } = blogList
+  const imageList = useSelector((state) => state.imageList)
+  const { loading: loadingImages, images } = imageList
 
   useEffect(() => {
     dispatch(getBlogs())
+    dispatch(getImages())
   }, [dispatch])
 
   return (
@@ -40,7 +44,7 @@ const HomeScreen = () => {
       <div className={classes.blogSlide}>
         <img className={classes.blogSlide_image} src={skyline} alt='skyline' />
         <div className={classes.blogs_container}>
-          {loadingBlogs ? (
+          {loadingBlogs || !blogs ? (
             <Loader />
           ) : (
             blogs.map((post, idx) => (
@@ -60,12 +64,23 @@ const HomeScreen = () => {
                     </Link>
                   </>
                 ) : (
-                  <Loader />
+                  <Loader afterColor='white' />
                 )}
               </div>
             ))
           )}
         </div>
+      </div>
+      <div className={classes.imagesSlide_container}>
+        {loadingImages || !images ? (
+          <Loader />
+        ) : (
+          images.map((item, idx) => (
+            <div>
+              <img src={item.src[0]} alt={item.alt} />
+            </div>
+          ))
+        )}
       </div>
     </div>
   )

@@ -16,12 +16,14 @@ import { Provider } from 'react-redux'
 import store from './store'
 // Assets
 import classes from './App.module.css'
+import Navbar from './components/layout/Navbar'
 
 const App = () => {
   return (
     <>
       <Provider store={store}>
         <BrowserRouter>
+          <Navbar />
           <Switch>
             <Route exact path='/' component={HomeScreen} />
             <Route exact path='/gallery' component={GalleryScreen} />

@@ -1,0 +1,126 @@
+.nav {
+  left: 50%;
+  position: absolute;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  z-index: 10;
+  background-color: white;
+}
+.nav a {
+  text-decoration: none;
+}
+.headerLogo {
+  margin: 0;
+  padding: 10px 0 0;
+}
+.desktop_container {
+  list-style-type: none;
+  margin: auto 0;
+}
+.desktop_container li {
+  float: left;
+  margin: auto 0;
+}
+
+.desktop_container li a {
+  display: block;
+  text-align: center;
+  padding: 15px 5px;
+  margin: 0px 10px;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+.desktop_container li a:hover {
+  color: #5a5a5a;
+}
+.regular_nav_li a {
+  color: black;
+}
+
+.hamburger_container {
+  display: 'flex';
+  align-items: center;
+  margin: auto 0;
+  padding: 0;
+  cursor: pointer;
+}
+.wideLink {
+  display: block;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 980px) {
+  .nav {
+    padding: 20px;
+  }
+  .desktop_container {
+    display: none;
+  }
+}
+@media (min-width: 980.5px) {
+  .hamburger_container {
+    display: none;
+  }
+}
+
+.drawerlist_container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+.drawerlist_container li {
+  border-bottom: 1px solid black;
+}
+.drawerlist_container li:hover {
+  border-bottom: 1px solid black;
+}
+.drawerlist_container li a {
+  padding: 15px 5px;
+  color: black;
+}
+.spacing_container {
+  height: 70%;
+}
+.logo_container {
+  position: relative;
+  top: 60vh;
+}
+.sideDrawer_open {
+  position: fixed;
+  width: 280px;
+  max-width: 70%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 200;
+  background-color: white;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out;
+}
+
+.sideDrawer_close {
+  position: fixed;
+  width: 280px;
+  max-width: 70%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 200;
+  background-color: #333;
+  padding: 32px 16px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out;
+}
+
+.sideDrawer_close {
+  transform: translateX(100%);
+}
+.sideDrawer_open {
+  transform: translateX(0);
+}
