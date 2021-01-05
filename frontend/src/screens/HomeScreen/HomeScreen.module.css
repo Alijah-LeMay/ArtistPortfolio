@@ -88,6 +88,8 @@
   max-width: 1500px;
   margin: auto;
   padding: 0;
+
+  justify-content: center;
 }
 
 .imagesSlide_image {
@@ -96,7 +98,39 @@
 }
 
 .imagesSlide_bottom {
-  width: 100%;
+  width: 90%;
   margin: auto;
   border-bottom: 1px rgb(161, 161, 161) solid;
+}
+.actionSlide_container {
+  margin: 40px;
+  padding: 300px 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  background-image: url('../../assets/Gallery/bikes.jpg');
+}
+
+.actionSlide_container h1 {
+  color: white;
+  margin: 0;
+  font-size: 4rem;
+  letter-spacing: 5px;
+}
+
+.actionSlide_container h2 {
+  color: white;
+  letter-spacing: 3px;
+}
+.actionSlide_container button {
+  margin-top: 20px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  text-decoration: underline;
+  letter-spacing: 3px;
+}
+.actionSlide_container button:hover {
+  cursor: pointer;
 }

@@ -17,6 +17,7 @@ import store from './store'
 // Assets
 import classes from './App.module.css'
 import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
               component={EditImageScreen}
             />
           </Switch>
+          <Footer />
         </BrowserRouter>
       </Provider>
     </>

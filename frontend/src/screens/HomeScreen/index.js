@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 // My Assets
 import trail from '../../assets/trail.jpg'
 import skyline from '../../assets/skyline.jpg'
+import bikes from '../../assets/Gallery/bikes.jpg'
 import classes from './HomeScreen.module.css'
 
 // Redux
@@ -90,6 +91,12 @@ const HomeScreen = () => {
             - More
           </Link>
         </div>
+      </div>
+      <div className={classes.actionSlide_container}>
+        <h1>Show The World</h1>
+        <h2>What you're made of</h2>
+
+        <button>Get Started</button>
       </div>
     </div>
   )
