@@ -76,11 +76,20 @@ const HomeScreen = () => {
           <Loader />
         ) : (
           images.map((item, idx) => (
-            <div>
-              <img src={item.src[0]} alt={item.alt} />
+            <div key={idx}>
+              <img
+                className={classes.imagesSlide_image}
+                src={item.src[0]}
+                alt={item.alt}
+              />
             </div>
           ))
         )}
+        <div className={classes.imagesSlide_bottom}>
+          <Link className={classes.link} to='/gallery'>
+            - More
+          </Link>
+        </div>
       </div>
     </div>
   )

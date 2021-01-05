@@ -28,6 +28,10 @@
   text-align: Right;
   padding-right: 20px;
 }
+
+/* Blogs Slide */
+/* Blogs Slide */
+/* Blogs Slide */
 .blogSlide {
   background-color: black;
   margin: 40px;
@@ -74,4 +78,25 @@
   color: black;
   font-size: 1.2rem;
   float: right;
+}
+/* GALLERY SLIDE */
+/* GALLERY SLIDE */
+/* GALLERY SLIDE */
+.imagesSlide_container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1500px;
+  margin: auto;
+  padding: 0;
+}
+
+.imagesSlide_image {
+  padding: 60px 120px;
+  margin: 0;
+}
+
+.imagesSlide_bottom {
+  width: 100%;
+  margin: auto;
+  border-bottom: 1px rgb(161, 161, 161) solid;
 }

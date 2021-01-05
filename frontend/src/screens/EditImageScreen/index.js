@@ -114,8 +114,8 @@ const EditImageScreen = (props) => {
   }, [dispatch, currentImage, history, imageId, successUpdate])
 
   return (
-    <div>
-      <form onSubmit={submitHandler}>
+    <div className={classes.screen_container}>
+      <form onSubmit={submitHandler} className={classes.form}>
         {formElements.map((formElement) => (
           <FormField
             key={formElement.id}

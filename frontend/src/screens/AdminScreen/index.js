@@ -74,12 +74,12 @@ const AdminScreen = (props) => {
       Welcome
       <button onClick={createImageHandler}>Add an image</button>
       <button onClick={logoutHandler}>Logout</button>
-      <div>
+      <div className={classes.gallery_container}>
         {!gallery ? (
           <Loader />
         ) : (
           gallery.map((item, idx) => (
-            <div>
+            <div key={idx} className={classes.imageDetail_container}>
               <p>{item.alt}</p>
               <img src={item.src[0]} alt={item.alt} />
               <button onClick={() => deleteImageHandler(item._id)}>
