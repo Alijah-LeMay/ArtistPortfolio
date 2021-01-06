@@ -34,7 +34,7 @@ const HomeScreen = () => {
   }, [dispatch])
 
   return (
-    <div className={classes.homeScreen_container}>
+    <div className={classes.screen_container}>
       <div className={classes.slide}>
         <div className={classes.greySquare}>
           <h1 className={classes.title}>John Doe</h1>

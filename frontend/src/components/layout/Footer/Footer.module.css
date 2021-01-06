@@ -1,0 +1,26 @@
+.footer_container {
+  background-color: black;
+  display: flex;
+  width: 100%;
+}
+.footer_container ul {
+  list-style: none;
+  margin: auto;
+  flex: 1;
+}
+
+.footer_container a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+}
+.icon_container {
+  display: flex;
+  z-index: 1;
+  flex: 5;
+  margin: auto;
+  justify-content: center;
+}
+.largerLink a {
+  font-size: 1.5rem;
+}

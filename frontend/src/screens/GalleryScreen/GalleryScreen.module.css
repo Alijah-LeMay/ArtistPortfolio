@@ -1,0 +1,15 @@
+.screen_container {
+  padding: 60px 0;
+}
+.imagesSlide_container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  padding: 0;
+  justify-content: center;
+}
+
+.imagesSlide_image {
+  padding: 60px 120px;
+  margin: 0;
+}
