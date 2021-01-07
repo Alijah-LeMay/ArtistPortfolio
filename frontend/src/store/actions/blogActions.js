@@ -17,11 +17,15 @@ import {
   DELETE_BLOG_FAIL,
 } from '../constants/blogConstants'
 
-export const getBlogs = () => async (dispatch) => {
+export const getBlogs = (pageNumber = '', pageSize = '') => async (
+  dispatch
+) => {
   try {
     dispatch({ type: GET_BLOGS_REQUEST })
 
-    const { data } = await axios.get('/api/blog')
+    const { data } = await axios.get(
+      `/api/blog?pageNumber=${pageNumber}&pageSize=${pageSize}`
+    )
 
     dispatch({
       type: GET_BLOGS_SUCCESS,

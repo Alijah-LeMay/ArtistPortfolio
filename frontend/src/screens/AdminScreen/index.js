@@ -12,7 +12,9 @@ import {
   getImages,
 } from '../../store/actions/imageActions'
 import { logout } from '../../store/actions/userActions'
+// My Components
 import Loader from '../../components/Loader'
+import BlogSection from './BlogSection'
 
 const AdminScreen = (props) => {
   const { history } = props
@@ -71,12 +73,16 @@ const AdminScreen = (props) => {
   ])
   return (
     <div className={classes.adminScreen_container}>
-      Welcome
-      <button onClick={createImageHandler}>Add an image</button>
-      <button onClick={logoutHandler}>Logout</button>
+      <div className={classes.controls_container}>
+        <h1>Welcome {userInfo.name}</h1>
+        <div>
+          <button onClick={createImageHandler}>Add an image</button>
+          <button onClick={logoutHandler}>Logout</button>
+        </div>
+      </div>
       <div className={classes.gallery_container}>
         {!gallery ? (
-          <Loader />
+          <Loader beforeColor='black' afterColor='lightgrey' />
         ) : (
           gallery.map((item, idx) => (
             <div key={idx} className={classes.imageDetail_container}>
@@ -88,8 +94,11 @@ const AdminScreen = (props) => {
             </div>
           ))
         )}
-        {loadingImageDelete && <Loader />}
+        {loadingImageDelete && (
+          <Loader beforeColor='black' afterColor='lightgrey' />
+        )}
       </div>
+      <BlogSection />
     </div>
   )
 }

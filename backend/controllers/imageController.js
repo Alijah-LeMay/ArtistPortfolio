@@ -7,8 +7,15 @@ const Img = require('../models/Img')
 // @access      Public
 
 const getImages = asyncHandler(async (req, res) => {
+  const pageSize = Number(req.query.pageSize) || 10
+  const page = Number(req.query.pageNumber) || 1
+
+  const count = await Img.countDocuments()
   const images = await Img.find()
-  res.json(images)
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
+
+  res.json({ images, page, pages: Math.ceil(count / pageSize) })
 })
 // desc         Create image entry
 // @route       POST /api/image

@@ -9,8 +9,16 @@ const Blog = require('../models/Blog')
 // @access      Public
 
 const getAllBlogs = asyncHandler(async (req, res) => {
+  const pageSize = Number(req.query.pageSize) || 10
+  const pageNumber = Number(req.query.pageNumber) || 1
+
+  const count = await Blog.countDocuments()
+
   const blogs = await Blog.find()
-  res.json(blogs)
+    .limit(pageSize)
+    .skip(pageSize * (pageNumber - 1))
+
+  res.json({ blogs, pageNumber, pages: Math.ceil(count / pageSize) })
 })
 
 // desc         Fetch single blog

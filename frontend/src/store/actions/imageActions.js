@@ -17,11 +17,15 @@ import {
   DELETE_IMAGE_FAIL,
 } from '../constants/imageConstants'
 
-export const getImages = () => async (dispatch) => {
+export const getImages = (pageNumber = '', pageSize = '') => async (
+  dispatch
+) => {
   try {
     dispatch({ type: GET_IMAGES_REQUEST })
 
-    const { data } = await axios.get('/api/image')
+    const { data } = await axios.get(
+      `/api/image?pageNumber=${pageNumber}&pageSize=${pageSize}`
+    )
 
     dispatch({
       type: GET_IMAGES_SUCCESS,

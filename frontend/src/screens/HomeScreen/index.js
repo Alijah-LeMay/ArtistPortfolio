@@ -15,11 +15,6 @@ import { getImages } from '../../store/actions/imageActions'
 // My Components
 import Loader from '../../components/Loader'
 
-const blogPosts = [
-  { img: '', description: '' },
-  { img: '', description: '2' },
-]
-
 const HomeScreen = () => {
   const dispatch = useDispatch()
 
@@ -29,8 +24,8 @@ const HomeScreen = () => {
   const { loading: loadingImages, images } = imageList
 
   useEffect(() => {
-    dispatch(getBlogs())
-    dispatch(getImages())
+    dispatch(getBlogs(null, 3))
+    dispatch(getImages(null, 6))
   }, [dispatch])
 
   return (
@@ -46,7 +41,7 @@ const HomeScreen = () => {
         <img className={classes.blogSlide_image} src={skyline} alt='skyline' />
         <div className={classes.blogs_container}>
           {loadingBlogs || !blogs ? (
-            <Loader />
+            <Loader beforeColor='white' afterColor='lightgrey' />
           ) : (
             blogs.map((post, idx) => (
               <div className={classes.blog_card} key={idx}>
@@ -65,7 +60,7 @@ const HomeScreen = () => {
                     </Link>
                   </>
                 ) : (
-                  <Loader afterColor='white' />
+                  <Loader beforeColor='white' afterColor='lightgrey' />
                 )}
               </div>
             ))
@@ -74,7 +69,7 @@ const HomeScreen = () => {
       </div>
       <div className={classes.imagesSlide_container}>
         {loadingImages || !images ? (
-          <Loader />
+          <Loader beforeColor='black' afterColor='lightgrey' />
         ) : (
           images.map((item, idx) => (
             <div key={idx}>

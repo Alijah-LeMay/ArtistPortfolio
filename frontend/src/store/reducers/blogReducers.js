@@ -23,7 +23,12 @@ export const blogListReducer = (state = { blogs: [] }, action) => {
     case GET_BLOGS_REQUEST:
       return { loading: true, blogs: [] }
     case GET_BLOGS_SUCCESS:
-      return { loading: false, blogs: action.payload }
+      return {
+        loading: false,
+        blogs: action.payload.blogs,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      }
     case GET_BLOGS_FAIL:
       return { loading: false, error: action.payload }
     default:
