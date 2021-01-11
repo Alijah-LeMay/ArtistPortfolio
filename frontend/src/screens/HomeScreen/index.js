@@ -54,9 +54,6 @@ const HomeScreen = () => {
                       />
                     </div>
                     <p>{post.description}</p>
-                    <Link className={classes.link} to='/blog'>
-                      - More
-                    </Link>
                   </>
                 ) : (
                   <Loader beforeColor='white' afterColor='lightgrey' />
@@ -65,6 +62,9 @@ const HomeScreen = () => {
             ))
           )}
         </div>
+        <Link className={classes.link2} to='/blog'>
+          - More
+        </Link>
       </div>
       <div className={classes.imagesSlide_container}>
         {loadingImages || !images ? (

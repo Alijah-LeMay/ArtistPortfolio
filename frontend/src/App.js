@@ -10,6 +10,8 @@ import BlogScreen from './screens/BlogScreen'
 import LoginScreen from './screens/LoginScreen'
 import AdminScreen from './screens/AdminScreen'
 import EditImageScreen from './screens/EditImageScreen'
+import EditBlogScreen from './screens/EditBlogScreen'
+import BlogPostScreen from './screens/BlogPostScreen'
 
 // Redux
 import { Provider } from 'react-redux'
@@ -31,12 +33,19 @@ const App = () => {
             <Route exact path='/pricing' component={PricingScreen} />
             <Route exact path='/contact' component={ContactScreen} />
             <Route exact path='/blog' component={BlogScreen} />
+            <Route exact path='/blog/:id' component={BlogPostScreen} />
+
             <Route exact path='/login' component={LoginScreen} />
             <Route exact path='/admin' component={AdminScreen} />
             <Route
               exact
               path='/admin/image/:id/edit'
               component={EditImageScreen}
+            />
+            <Route
+              exact
+              path='/admin/blog/:id/edit'
+              component={EditBlogScreen}
             />
           </Switch>
           <Footer />

@@ -56,6 +56,7 @@ const deleteBlog = asyncHandler(async (req, res) => {
 
 const createBlog = asyncHandler(async (req, res) => {
   const blog = new Blog({
+    title: 'Sample Title',
     image: 'Sample Image',
     content: 'Sample Content',
     description: 'Sample Description',
@@ -68,11 +69,12 @@ const createBlog = asyncHandler(async (req, res) => {
 // @route       PUT /api/blog/:id
 // @access      Private / Admin
 const updateBlog = asyncHandler(async (req, res) => {
-  const { image, content, description } = req.body
+  const { title, image, content, description } = req.body
 
   const blog = await Blog.findById(req.params.id)
 
   if (blog) {
+    blog.title = title
     blog.image = image
     blog.description = description
     blog.content = content

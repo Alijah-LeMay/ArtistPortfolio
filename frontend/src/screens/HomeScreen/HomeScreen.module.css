@@ -81,6 +81,16 @@
   font-size: 1.2rem;
   float: right;
 }
+.link2 {
+  text-decoration: none;
+  position: absolute;
+  right: 10%;
+  color: black;
+  font-size: 1.2rem;
+  padding: 20px 50px;
+  margin-top: 100px;
+  background-color: grey;
+}
 /* GALLERY SLIDE */
 /* GALLERY SLIDE */
 /* GALLERY SLIDE */

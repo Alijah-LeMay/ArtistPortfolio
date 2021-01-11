@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-
+import { Link } from 'react-router-dom'
 // Redux
 import { useSelector, useDispatch } from 'react-redux'
 import { getBlogs } from '../../store/actions/blogActions'
@@ -35,6 +35,9 @@ const BlogScreen = () => {
                     />
                   </div>
                   <p>{post.description}</p>
+                  <Link className={classes.link} to={`/blog/${post._id}`}>
+                    - Read
+                  </Link>
                 </>
               ) : (
                 <Loader afterColor='white' />

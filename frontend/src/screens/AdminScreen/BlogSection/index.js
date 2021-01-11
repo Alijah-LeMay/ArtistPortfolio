@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 // Assets
 import classes from '../AdminScreen.module.css'
 // Redux
@@ -35,12 +36,17 @@ const BlogSection = (props) => {
       dispatch(deleteBlog(id))
     }
   }
+  const editBlogHandler = (id) => {
+    if (id) {
+      history.push(`/admin/blog/${id}/edit`)
+    }
+  }
 
   useEffect(() => {
     dispatch({ type: CREATE_BLOG_RESET })
     dispatch(getBlogs())
 
-    if (successCreateBlog && history) {
+    if (successCreateBlog) {
       history.push(`/admin/blog/${createdBlog._id}/edit`)
     }
   }, [dispatch, history, successCreateBlog, createdBlog, successBlogDelete])
@@ -71,6 +77,9 @@ const BlogSection = (props) => {
                     <button onClick={() => deleteBlogHandler(post._id)}>
                       delete
                     </button>
+                    <button onClick={() => editBlogHandler(post._id)}>
+                      Edit
+                    </button>
                   </>
                 ) : (
                   <Loader beforeColor='black' afterColor='lightgrey' />
@@ -84,4 +93,4 @@ const BlogSection = (props) => {
   )
 }
 
-export default BlogSection
+export default withRouter(BlogSection)
