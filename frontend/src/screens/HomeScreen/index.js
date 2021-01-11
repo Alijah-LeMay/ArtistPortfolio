@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 // My Assets
 import trail from '../../assets/trail.jpg'
 import skyline from '../../assets/skyline.jpg'
-import bikes from '../../assets/Gallery/bikes.jpg'
 import classes from './HomeScreen.module.css'
 
 // Redux

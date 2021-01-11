@@ -4,13 +4,15 @@ import axios from 'axios'
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { updateImage, getImageDetails } from '../../store/actions/imageActions'
+import { UPDATE_IMAGE_RESET } from '../../store/constants/imageConstants'
 
 // My Components
 import FormField from '../../components/FormField'
+import Loader from '../../components/Loader'
 
 //Assets
 import classes from './EditImageScreen.module.css'
-import { UPDATE_IMAGE_RESET } from '../../store/constants/imageConstants'
+
 const EditImageScreen = (props) => {
   const { match, history } = props
   const imageId = match.params.id
@@ -18,7 +20,7 @@ const EditImageScreen = (props) => {
 
   // Redux State
   const imageDetails = useSelector((state) => state.imageDetails)
-  const { image: currentImage } = imageDetails
+  const { loading: loadingImageDetails, image: currentImage } = imageDetails
 
   const imageUpdate = useSelector((state) => state.imageUpdate)
   const { success: successUpdate } = imageUpdate
@@ -29,7 +31,7 @@ const EditImageScreen = (props) => {
 
   // Form State
   const [formState, setFormState] = useState({
-    alt: { value: '' },
+    alt: '',
   })
 
   // Form Config
@@ -43,7 +45,11 @@ const EditImageScreen = (props) => {
   // Prepare formState objects
   const formElements = []
   for (let key in formState) {
-    formElements.push({ id: key, setup: formConfig[key] })
+    formElements.push({
+      id: key,
+      setup: formConfig[key],
+      value: formState[key],
+    })
   }
 
   // Prepare images array
@@ -115,26 +121,33 @@ const EditImageScreen = (props) => {
 
   return (
     <div className={classes.screen_container}>
-      <form onSubmit={submitHandler} className={classes.form}>
-        {formElements.map((formElement) => (
-          <FormField
-            key={formElement.id}
-            type={formElement.setup.type}
-            config={formElement.setup.config}
-            value={formElement.setup.value}
-            changed={(event) => inputChangedHandler(event, formElement.id)}
-          />
-        ))}
-        {images.map((item, index) => (
-          <div className={classes.imageBox_container} key={index}>
-            <img src={item} style={{ width: '100px' }} alt={item} />
-            <button onClick={() => imageDeleteHandler(item)}>Delete</button>
-          </div>
-        ))}
-        <input type='file' onChange={uploadFileHandler} name={images} />
-        {uploading && <div>...loading...</div>}
-        <button type='submit'>Submit</button>
-      </form>
+      {loadingImageDetails ? (
+        <Loader />
+      ) : (
+        <form onSubmit={submitHandler} className={classes.form}>
+          {formElements.map((formElement) => {
+            console.log(formElement)
+            return (
+              <FormField
+                key={formElement.id}
+                type={formElement.setup.type}
+                config={formElement.setup.config}
+                value={formElement.value}
+                changed={(event) => inputChangedHandler(event, formElement.id)}
+              />
+            )
+          })}
+          {images.map((item, index) => (
+            <div className={classes.imageBox_container} key={index}>
+              <img src={item} style={{ width: '100px' }} alt={item} />
+              <button onClick={() => imageDeleteHandler(item)}>Delete</button>
+            </div>
+          ))}
+          <input type='file' onChange={uploadFileHandler} name={images} />
+          {uploading && <div>...loading...</div>}
+          <button type='submit'>Submit</button>
+        </form>
+      )}
     </div>
   )
 }

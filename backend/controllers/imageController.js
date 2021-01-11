@@ -31,6 +31,20 @@ const postImage = asyncHandler(async (req, res) => {
   res.status(201).json(createdImage)
 })
 
+// desc         Fetch single blog
+// @route       GET /api/image/:id
+// @access      Public
+
+const getImageById = asyncHandler(async (req, res) => {
+  const image = await Img.findById(req.params.id)
+  if (image) {
+    res.json(image)
+  } else {
+    res.status(404)
+    throw new Error('Image not found')
+  }
+})
+
 // desc         Update Image Entry
 // @route       PUT /api/image/:id
 // @access      Private / Admin
@@ -69,4 +83,5 @@ module.exports = {
   postImage,
   updateImage,
   deleteImage,
+  getImageById,
 }

@@ -52,12 +52,11 @@ const LoginScreen = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(formState.email, formState.password)
     dispatch(login(formState.email, formState.password))
   }
 
   return (
-    <div className={classes.loginScreen_container}>
+    <div className={classes.screen_container}>
       <form onSubmit={submitHandler}>
         <h2>Administrator Login</h2>
         {formElements.map((formElement) => (

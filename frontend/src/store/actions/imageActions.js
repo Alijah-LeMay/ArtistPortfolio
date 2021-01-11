@@ -72,11 +72,22 @@ export const createImage = () => async (dispatch, getState) => {
     })
   }
 }
-export const getImageDetails = (id) => async (dispatch) => {
+export const getImageDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: IMAGE_DETAILS_REQUEST })
 
-    const { data } = await axios.get(`/api/image/${id}`)
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(`/api/image/${id}`, config)
 
     dispatch({
       type: IMAGE_DETAILS_SUCCESS,

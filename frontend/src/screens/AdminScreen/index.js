@@ -43,11 +43,17 @@ const AdminScreen = (props) => {
   const logoutHandler = (e) => {
     e.preventDefault()
     dispatch(logout())
+    history.push('/login')
   }
 
   const deleteImageHandler = (id) => {
     if (window.confirm('Are you sure?')) {
       dispatch(deleteImage(id))
+    }
+  }
+  const editImageHandler = (id) => {
+    if (id) {
+      history.push(`/admin/image/${id}/edit`)
     }
   }
 
@@ -72,7 +78,7 @@ const AdminScreen = (props) => {
     successImageDelete,
   ])
   return (
-    <div className={classes.adminScreen_container}>
+    <div className={classes.screen_container}>
       <div className={classes.controls_container}>
         <h1>Welcome {userInfo.name}</h1>
         <div>
@@ -91,6 +97,7 @@ const AdminScreen = (props) => {
               <button onClick={() => deleteImageHandler(item._id)}>
                 delete
               </button>
+              <button onClick={() => editImageHandler(item._id)}>Edit</button>
             </div>
           ))
         )}

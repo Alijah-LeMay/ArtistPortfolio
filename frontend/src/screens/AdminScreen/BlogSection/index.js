@@ -40,40 +40,45 @@ const BlogSection = (props) => {
     dispatch({ type: CREATE_BLOG_RESET })
     dispatch(getBlogs())
 
-    if (successCreateBlog) {
+    if (successCreateBlog && history) {
       history.push(`/admin/blog/${createdBlog._id}/edit`)
     }
   }, [dispatch, history, successCreateBlog, createdBlog, successBlogDelete])
   return (
     <>
-      <div className={classes.controls_container}>
-        <div>
-          <button onClick={createBlogHandler}>Add an Blog</button>
+      <div className={classes.section_container}>
+        <div className={classes.controls_container}>
+          <div>
+            <button onClick={createBlogHandler}>Add an Blog</button>
+          </div>
         </div>
-      </div>
-      <div className={classes.blogs_container}>
-        {loadingBlogs || !blogs ? (
-          <Loader beforeColor='black' afterColor='lightgrey' />
-        ) : (
-          blogs.map((post, idx) => (
-            <div className={classes.blog_card} key={idx}>
-              {post.image ? (
-                <>
-                  <div className={classes.image_clipper}>
-                    <img
-                      className={classes.blog_image}
-                      src={post.image}
-                      alt={post.image}
-                    />
-                  </div>
-                  <p>{post.description}</p>
-                </>
-              ) : (
-                <Loader beforeColor='black' afterColor='lightgrey' />
-              )}
-            </div>
-          ))
-        )}
+        <div className={classes.blogs_container}>
+          {loadingBlogs || !blogs ? (
+            <Loader beforeColor='black' afterColor='lightgrey' />
+          ) : (
+            blogs.map((post, idx) => (
+              <div className={classes.blog_card} key={idx}>
+                {post.image ? (
+                  <>
+                    <div className={classes.image_clipper}>
+                      <img
+                        className={classes.blog_image}
+                        src={post.image}
+                        alt={post.image}
+                      />
+                    </div>
+                    <p>{post.description}</p>
+                    <button onClick={() => deleteBlogHandler(post._id)}>
+                      delete
+                    </button>
+                  </>
+                ) : (
+                  <Loader beforeColor='black' afterColor='lightgrey' />
+                )}
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </>
   )
