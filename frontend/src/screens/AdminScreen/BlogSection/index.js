@@ -44,7 +44,7 @@ const BlogSection = (props) => {
 
   useEffect(() => {
     dispatch({ type: CREATE_BLOG_RESET })
-    dispatch(getBlogs())
+    dispatch(getBlogs(null, 100))
 
     if (successCreateBlog) {
       history.push(`/admin/blog/${createdBlog._id}/edit`)
@@ -55,7 +55,7 @@ const BlogSection = (props) => {
       <div className={classes.section_container}>
         <div className={classes.controls_container}>
           <div>
-            <button onClick={createBlogHandler}>Add an Blog</button>
+            <button onClick={createBlogHandler}>Add A Blog</button>
           </div>
         </div>
         <div className={classes.blogs_container}>

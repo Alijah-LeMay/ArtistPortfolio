@@ -15,7 +15,7 @@ const BlogScreen = () => {
   const blogList = useSelector((state) => state.blogList)
   const { loading: loadingBlogs, blogs } = blogList
   useEffect(() => {
-    dispatch(getBlogs())
+    dispatch(getBlogs(null, 100))
   }, [dispatch])
   return (
     <div className={classes.screen_container}>
