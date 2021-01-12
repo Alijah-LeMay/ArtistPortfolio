@@ -1,4 +1,9 @@
 .screen_container {
-  padding: 60px 0;
+  padding: 60px;
   min-height: 80vh;
+  text-align: center;
+}
+.screen_container button {
+  float: left;
+  margin: 20px 0 0 30px;
 }

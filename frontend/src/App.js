@@ -11,6 +11,7 @@ import AdminScreen from './screens/AdminScreen'
 import EditImageScreen from './screens/EditImageScreen'
 import EditBlogScreen from './screens/EditBlogScreen'
 import BlogPostScreen from './screens/BlogPostScreen'
+import NotFoundScreen from './screens/NotFoundScreen'
 
 // Redux
 import { Provider } from 'react-redux'
@@ -45,6 +46,7 @@ const App = () => {
               path='/admin/blog/:id/edit'
               component={EditBlogScreen}
             />
+            <Route component={NotFoundScreen} />
           </Switch>
           <Footer />
         </BrowserRouter>

@@ -101,10 +101,13 @@ const EditBlogScreen = (props) => {
       })
     )
   }
+  const goBackHandler = () => {
+    history.push('/login')
+  }
 
   return (
     <div className={classes.screen_container}>
-      <Link to='/admin'>Go Back</Link>
+      <button onClick={goBackHandler}>Go Back</button>
       <h2>Edit Blog</h2>
       <form className={classes.form} onSubmit={submitHandler}>
         {formElements.map((formElement) => (

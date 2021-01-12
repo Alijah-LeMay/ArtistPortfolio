@@ -8,6 +8,7 @@ const userRoutes = require('./routes/userRoutes')
 const blogRoutes = require('./routes/blogRoutes')
 const uploadRoutes = require('./routes/uploadRoutes')
 const imageRoutes = require('./routes/imageRoutes')
+const sendEmail = require('./routes/sendEmail')
 
 const app = express()
 
@@ -21,6 +22,9 @@ app.use(express.json({ extended: false }))
 app.use('/api/user', userRoutes)
 app.use('/api/blog', blogRoutes)
 app.use('/api/image', imageRoutes)
+
+// nodeMailer
+app.use('/api/send', sendEmail)
 
 // Image upload route
 app.use('/api/upload', uploadRoutes)

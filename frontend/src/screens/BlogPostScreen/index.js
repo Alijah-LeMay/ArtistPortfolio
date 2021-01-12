@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
 
 const BlogPostScreen = (props) => {
-  const { match } = props
+  const { match, history } = props
   const dispatch = useDispatch()
 
   const blogId = match.params.id
@@ -26,6 +26,10 @@ const BlogPostScreen = (props) => {
       dispatch(getBlogDetails(blogId))
     }
   }, [dispatch, blog, blogId])
+
+  const goBackHandler = () => {
+    history.push('/blog')
+  }
   return (
     <div className={classes.screen_container}>
       {loadingDetails ? (
@@ -36,6 +40,7 @@ const BlogPostScreen = (props) => {
           <ReactMarkdown source={blog.content} />
         </div>
       )}
+      <button onClick={goBackHandler}>Go Back</button>
     </div>
   )
 }

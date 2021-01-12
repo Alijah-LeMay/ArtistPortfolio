@@ -82,7 +82,6 @@ const EditImageScreen = (props) => {
   const imageDeleteHandler = (id) => {
     const imageIndex = images.indexOf(id)
     images.splice(imageIndex, 1)
-    console.log(imageIndex)
   }
 
   const inputChangedHandler = (event, inputIdentifier) => {
@@ -119,8 +118,12 @@ const EditImageScreen = (props) => {
     }
   }, [dispatch, currentImage, history, imageId, successUpdate])
 
+  const goBackHandler = () => {
+    history.push('/login')
+  }
   return (
     <div className={classes.screen_container}>
+      <button onClick={goBackHandler}>Go Back</button>
       {loadingImageDetails ? (
         <Loader />
       ) : (

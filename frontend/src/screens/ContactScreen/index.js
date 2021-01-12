@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 
 // My Components
 import FormField from '../../components/FormField'
+import Loader from '../../components/Loader'
 
 // Assets
 import classes from './ContactScreen.module.css'
 
-const ContactScreen = () => {
+const ContactScreen = (props) => {
+  const {} = props
   const dispatch = useDispatch()
   const [formState, setFormState] = useState({
     name: '',
@@ -17,6 +20,8 @@ const ContactScreen = () => {
     phone: '',
     gig: '',
   })
+  const [loadingSubmit, setLoadingSubmit] = useState(false)
+
   const formConfig = {
     name: {
       type: 'input',
@@ -56,9 +61,23 @@ const ContactScreen = () => {
     })
   }
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
-    dispatch()
+    setLoadingSubmit(true)
+
+    const { name, email, phone, gig } = formState
+    try {
+      await axios.post('/api/send', {
+        name,
+        email,
+        phone,
+        gig,
+      })
+      console.log('Message Sent')
+    } catch (error) {
+      console.log('Message failed to send')
+    }
+    setLoadingSubmit(false)
   }
   return (
     <div className={classes.screen_container}>
@@ -74,8 +93,7 @@ const ContactScreen = () => {
             changed={(event) => inputChangedHandler(event, formElement.id)}
           />
         ))}
-
-        <button type='submit'>Submit</button>
+        {loadingSubmit ? <Loader /> : <button type='submit'>Submit</button>}
       </form>
     </div>
   )

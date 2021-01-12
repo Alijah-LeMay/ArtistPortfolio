@@ -52,6 +52,7 @@
   display: flex;
   flex-direction: row;
   padding-top: 80px;
+  flex-wrap: wrap;
 }
 .blog_card {
   background-color: grey;
@@ -146,4 +147,12 @@
 }
 .actionSlide_container button:hover {
   cursor: pointer;
+}
+@media (max-width: 1000px) {
+  .imagesSlide_image {
+    padding: 40px;
+  }
+  .blogs_container:nth-child(3) {
+    display: none;
+  }
 }

@@ -64,7 +64,7 @@ const AdminScreen = (props) => {
       history.push('/login')
     }
 
-    dispatch(getImages())
+    dispatch(getImages(null, 100))
 
     if (successCreateImage) {
       history.push(`/admin/image/${createdImage._id}/edit`)
