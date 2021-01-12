@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 // My Screens
 import HomeScreen from './screens/HomeScreen'
 import GalleryScreen from './screens/GalleryScreen'
-import PricingScreen from './screens/PricingScreen'
 import ContactScreen from './screens/ContactScreen'
 import BlogScreen from './screens/BlogScreen'
 import LoginScreen from './screens/LoginScreen'
@@ -30,7 +29,6 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={HomeScreen} />
             <Route exact path='/gallery' component={GalleryScreen} />
-            <Route exact path='/pricing' component={PricingScreen} />
             <Route exact path='/contact' component={ContactScreen} />
             <Route exact path='/blog' component={BlogScreen} />
             <Route exact path='/blog/:id' component={BlogPostScreen} />

@@ -23,11 +23,6 @@ const Footer = () => {
             <p>Blog</p>
           </Link>
         </li>
-        <li>
-          <Link to='/pricing'>
-            <p>Pricing</p>
-          </Link>
-        </li>
       </ul>
       <div className={classes.icon_container}>
         <a href='//www.instagram.com'>

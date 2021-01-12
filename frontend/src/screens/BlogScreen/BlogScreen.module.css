@@ -6,13 +6,17 @@
 .blogs_container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   padding-top: 80px;
+  max-width: 1000px;
+  margin: auto;
 }
 .blog_card {
   background-color: grey;
   z-index: 2;
   margin: auto;
   padding: 5px;
+  margin-bottom: 40px;
 }
 .image_clipper {
   height: 300px;

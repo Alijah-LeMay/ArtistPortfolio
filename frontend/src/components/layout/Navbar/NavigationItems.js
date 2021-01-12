@@ -9,7 +9,6 @@ const NavigationItems = ({ clicked }) => {
     { to: '/', name: 'Home' },
     { to: '/gallery', name: 'Gallery' },
     { to: '/blog', name: 'Blog' },
-    { to: '/pricing', name: 'Pricing' },
     { to: '/contact', name: 'Contact' },
   ]
 

@@ -18,8 +18,6 @@ const EditBlogScreen = (props) => {
   const dispatch = useDispatch()
   const blogId = match.params.id
 
-  const [image, setImage] = useState([])
-
   const blogDetails = useSelector((state) => state.blogDetails)
   const { blog } = blogDetails
 
@@ -103,17 +101,12 @@ const EditBlogScreen = (props) => {
       })
     )
   }
-  const imageDeleteHandler = (id) => {
-    const imageIndex = image.indexOf(id)
-    image.splice(imageIndex, 1)
-    console.log(imageIndex)
-  }
 
   return (
     <div className={classes.screen_container}>
       <Link to='/admin'>Go Back</Link>
       <h2>Edit Blog</h2>
-      <form onSubmit={submitHandler}>
+      <form className={classes.form} onSubmit={submitHandler}>
         {formElements.map((formElement) => (
           <FormField
             key={formElement.id}
